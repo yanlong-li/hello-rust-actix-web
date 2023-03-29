@@ -1,0 +1,35 @@
+GET http://localhost:8080/counter
+
+###
+GET http://localhost:8080/user
+
+###
+POST http://localhost:8080/post/form-data
+Content-Type: application/x-www-form-urlencoded
+
+username=yanlongli&password=123
+
+###
+POST http://localhost:8080/post/json
+Content-Type: application/json
+
+{
+  "username": "yanlongli",
+  "password": "456"
+}
+
+###
+PUT http://localhost:8080/put
+Content-Type: application/json
+
+###
+GET http://localhost:8080/db
+Content-Type: application/json
+###
+GET http://localhost:8080/static/index.html
+
+###
+WEBSOCKET ws://localhost:8080/ws
+
+###
+GET http://localhost:8080/redis

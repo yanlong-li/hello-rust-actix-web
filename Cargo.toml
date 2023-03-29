@@ -1,0 +1,18 @@
+[package]
+name = "hello-actix"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+actix-web = "4"
+actix-web-static-files = "4.0.1"
+actix-files = "0.6.2"
+actix-web-actors = "4.2.0"
+actix = "0.13.0"
+serde = { version = "1.0.158", features = ["derive"] }
+serde_json = "1.0"
+r2d2 = "0.8.10"
+r2d2_mysql = "23.0.0"
+actix-redis = "0.12.0"
