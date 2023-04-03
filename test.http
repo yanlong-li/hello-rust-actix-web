@@ -23,9 +23,19 @@ PUT http://localhost:8080/put
 Content-Type: application/json
 
 ###
-GET http://localhost:8080/db
+GET http://localhost:8080/db/lisi
 Content-Type: application/json
+
+
 ###
+POST http://localhost:8080/db
+Content-Type: application/json
+
+{
+  "username": "测试",
+  "password": "123"
+}
+###11
 GET http://localhost:8080/static/index.html
 
 ###
@@ -33,3 +43,4 @@ WEBSOCKET ws://localhost:8080/ws
 
 ###
 GET http://localhost:8080/redis
+###

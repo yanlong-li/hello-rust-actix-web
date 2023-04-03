@@ -1,5 +1,16 @@
 version: '3.9'
 services:
+  rust:
+    build:
+      context: docker/rust
+    image: rust-build:latest
+    volumes:
+      - ./:/app
+    working_dir: /app
+    user: root:root
+    command:
+      - cargo
+      - build
   mysql:
     image: mysql
     environment:
