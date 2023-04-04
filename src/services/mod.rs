@@ -1,12 +1,12 @@
-use actix_web::{HttpResponse, Responder, web, post};
-use crate::services::mysql::add_user;
+use actix_web::http::StatusCode;
+use actix_web::{post, web, HttpResponse, Responder, Result};
 
-mod user;
-mod ws;
 mod post;
-mod static_files;
 mod redis;
-mod mysql;
+pub mod state;
+mod static_files;
+mod users;
+mod ws;
 
 #[post("/echo")]
 async fn echo(req_body: String) -> impl Responder {
@@ -18,12 +18,18 @@ pub fn cfg(cfg: &mut web::ServiceConfig) {
         web::scope("")
             .configure(post::cfg)
             .service(echo)
-            .service(web::scope("/user").default_service(web::route().to(user::user)))
             .service(ws::ws_index)
             .service(static_files::static_files)
-            // .service(counter::counter_plus)
             .service(redis::redis)
-            .service(mysql::get_user)
-            .service(add_user)
+            .service(users::get_user)
+            .service(users::add_user)
+            .service(users::get_list)
+            .service(users::delete_user)
+            .service(state::get_state)
+            .default_service(web::route().to(not_found)),
     );
+}
+
+async fn not_found() -> Result<impl Responder> {
+    Ok(HttpResponse::build(StatusCode::NOT_FOUND).body("PageNotFound"))
 }
